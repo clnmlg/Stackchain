@@ -61,7 +61,7 @@ const Post = ({ post, setCurrentId }) => {
     }
     const classes = styled()
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} variant="outlined">
             <CardMedia
                 className={classes.media}
                 image={post.selectedFile}
@@ -72,15 +72,6 @@ const Post = ({ post, setCurrentId }) => {
                 <Typography variant="body2">
                     {moment(post.createdAt).fromNow()}
                 </Typography>
-            </div>
-            <div className={classes.overlay2}>
-                <Button
-                    style={{ color: 'white' }}
-                    size="small"
-                    onClick={() => setCurrentId(post._id)}
-                >
-                    <MoreHorizIcon fontSize="medium" />
-                </Button>
             </div>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">
@@ -104,15 +95,25 @@ const Post = ({ post, setCurrentId }) => {
                 >
                     <Likes />
                 </Button>
-                {(user?.result?.googleId === post?.creator ||
-                    user?.result?._id === post?.creator) && (
-                    <Button
-                        size="small"
-                        color="secondary"
-                        onClick={() => dispatch(deletePost(post._id))}
-                    >
-                        <DeleteIcon fontSize="small" /> &nbsp; Delete
-                    </Button>
+                {user?.result?._id === post?.creator && (
+                    <>
+                        <Button
+                            size="small"
+                            color="secondary"
+                            onClick={() => dispatch(deletePost(post._id))}
+                        >
+                            <DeleteIcon fontSize="small" /> &nbsp; Delete
+                        </Button>
+                        <div className={classes.overlay2}>
+                            <Button
+                                style={{ color: 'white' }}
+                                size="small"
+                                onClick={() => setCurrentId(post._id)}
+                            >
+                                <MoreHorizIcon fontSize="medium" />
+                            </Button>
+                        </div>
+                    </>
                 )}
             </CardActions>
         </Card>

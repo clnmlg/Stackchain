@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
         },
     },
     paper: {
-        borderRadius: 15,
+        borderRadius: 12,
         padding: theme.spacing(2),
     },
     form: {

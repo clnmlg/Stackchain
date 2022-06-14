@@ -6,12 +6,12 @@ export const getPosts = async (req: Request, res: Response) => {
     try {
         const posts = await Posts.find()
         return res.status(200).json(posts)
-    } catch (error) {
+    } catch (error: any) {
         res.status(404).json({ message: error.message })
     }
 }
 
-export const createPost = async (req, res) => {
+export const createPost = async (req: any, res: Response) => {
     const post = req.body
     const newPost = new Posts({
         ...post,
@@ -21,7 +21,7 @@ export const createPost = async (req, res) => {
     try {
         await newPost.save()
         res.status(201).json(newPost)
-    } catch (error) {
+    } catch (error: any) {
         res.status(409).json({ message: error.message })
     }
 }
@@ -53,11 +53,15 @@ export const likePost = async (req: any, res: Response) => {
     if (!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).send(`No post with id: ${id}`)
     const post = await Posts.findById(id)
-    const index = post.likes.findIndex((id) => id === String(req.userId))
+    const index = post.likes.findIndex(
+        (id: string) => id === String(req.userId)
+    )
     if (index === -1) {
         post.likes.push(req.userId)
     } else {
-        post.likes = post.likes.filter((id) => id !== String(req.userId))
+        post.likes = post.likes.filter(
+            (id: string) => id !== String(req.userId)
+        )
     }
 
     const updatedPost = await Posts.findByIdAndUpdate(id, post, { new: true })

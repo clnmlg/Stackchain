@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 
 // client request check middleware
-const secret = process.env.JWT_SECRET
 
 const authMiddleware = async (req: any, res: Response, next: any) => {
     try {
@@ -13,7 +12,7 @@ const authMiddleware = async (req: any, res: Response, next: any) => {
         let decodedData: string | jwt.JwtPayload | any
 
         if (token && isCustomAuth) {
-            decodedData = jwt.verify(token, secret)
+            decodedData = jwt.verify(token, process.env.JWT_SECRET as string)
 
             req.userId = decodedData?.id
         } else {

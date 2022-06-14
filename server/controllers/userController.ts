@@ -1,9 +1,9 @@
+import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import User from '../models/userModel'
-import 'dotenv/config'
 
-export const signin = async (req, res) => {
+export const signin = async (req: Request, res: Response) => {
     const { email, password } = req.body
 
     try {
@@ -22,7 +22,7 @@ export const signin = async (req, res) => {
 
         const token = jwt.sign(
             { email: oldUser.email, id: oldUser._id },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET as string,
             { expiresIn: '1h' }
         )
 
@@ -32,7 +32,7 @@ export const signin = async (req, res) => {
     }
 }
 
-export const signup = async (req, res) => {
+export const signup = async (req: Request, res: Response) => {
     const { email, password, firstName, lastName } = req.body
 
     try {
@@ -51,7 +51,7 @@ export const signup = async (req, res) => {
 
         const token = jwt.sign(
             { email: result.email, id: result._id },
-            process.env.JWT_SECRET,
+            process.env.JWT_SECRET as string,
             { expiresIn: '1h' }
         )
 
