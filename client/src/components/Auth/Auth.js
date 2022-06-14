@@ -3,20 +3,40 @@ import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
 import Input from './Input'
 import useStyles from './styles'
+import { signin, signup } from '../../redux/actions/auth'
+import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+  const history = useHistory()
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
+  const [formData, setFormData ] = useState(initialState)
 
   const handleShowPasword = () => setShowPassword((prevShowPassword) => !prevShowPassword)
+
   const switchMode = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup)
     handleShowPasword(false)
   }
 
-  const handleSubmit = () => {}
-  const handleChange = () => {}
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if(isSignup) {
+      dispatch(signup(formData, history))
+    } else {
+      dispatch(signin(formData, history))
+    }
+  }
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value})
+
+  }
 
   return (
     <Container component='main' maxWidth="xs">
@@ -39,9 +59,9 @@ const Auth = () => {
             { isSignup && <Input name="confirmPassword" label="Confirm Password" handleChange={handleChange} type="password" />}
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-              { isSignup ? 'Sign Up' : 'Sign In' }
+            { isSignup ? 'Sign Up' : 'Sign In' }
           </Button>
-          <Grid container justify="flex-end">
+          <Grid container justifyContent="center">
               <Grid item>
                 <Button onClick={switchMode}>
                 { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }

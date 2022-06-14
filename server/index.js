@@ -6,6 +6,7 @@ import cors from 'cors';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import postRoutes from './routes/postRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 const app = express();
 app.use(bodyParser.json({ limit: '50mb', extended: true}))
@@ -14,6 +15,7 @@ app.use(rateLimit({windowMs: 10 * 1000, max: 50, message: {message: 'Too many re
 app.use(compression())
 app.use(cors())
 app.use('/posts', postRoutes)
+app.use('/user', userRoutes)
 
 
 const CONNECTION_URL = process.env.MONGO_URL
