@@ -1,15 +1,15 @@
 import React, {useState, useEffect } from "react";
-import { Link , useHistory, useLocation } from 'react-router-dom'
+import { Link , useNavigate, useLocation } from 'react-router-dom'
 import { AppBar, Avatar, Toolbar, Typography, Button} from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import * as actionType from '../../constants/actionTypes';
-import useStyles from './styles'
+import styled from './styles';
 import decode from 'jwt-decode';
 
 
 const Navbar = () => {
-  const classes = useStyles()
-  const history = useHistory()
+  const classes = styled()
+  const history = useNavigate()
   const location= useLocation()
   const dispatch = useDispatch()
   const [user, setUser ] = useState(JSON.parse(localStorage.getItem('profile')))

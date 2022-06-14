@@ -2,14 +2,14 @@ import React,{ useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { Container, Grid, Grow } from "@material-ui/core";
 import { getPosts } from '../../redux/actions/posts'
-import useStyles from '../../styles';
+import styled from '../../styles';
 import Posts from '../../components/Posts/Posts'
 import Form from '../../components/Form/Form'
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
   const dispatch = useDispatch();
-  const classes = useStyles();
+  const classes = styled();
   useEffect(() => {dispatch(getPosts());}, [currentId, dispatch]);
 
   return (

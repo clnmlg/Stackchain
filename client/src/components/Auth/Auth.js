@@ -1,18 +1,18 @@
 import React, {useState} from 'react'
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core'
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined'
 import Input from './Input'
-import useStyles from './styles'
+import createStyled from './styles';
 import { signin, signup } from '../../redux/actions/auth'
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
-  const classes = useStyles()
+  const classes = createStyled()
   const dispatch = useDispatch()
-  const history = useHistory()
+  const history = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [isSignup, setIsSignup] = useState(false)
   const [formData, setFormData ] = useState(initialState)

@@ -3,14 +3,14 @@ import { Button, Typography, Paper, TextField } from '@material-ui/core'
 import FileBase from 'react-file-base64'
 import { useDispatch,useSelector } from 'react-redux'
 import { createPost, updatePost } from '../../redux/actions/posts'
-import useStyles from './styles';
+import styled from './styles';
 
 const Form = ({ currentId, setCurrentId }) => {
 
   const [postData, setPostData] = useState({ title: '', message: '', tags: '', selectedFile: '' });
   const post = useSelector((state) => (currentId ? state.posts.find((p) => p._id === currentId) : null));
   const dispatch = useDispatch();
-  const classes = useStyles();
+  const classes = styled();
   const user = JSON.parse(localStorage.getItem('profile'))
 
   useEffect(() => {
