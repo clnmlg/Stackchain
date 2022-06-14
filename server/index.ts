@@ -1,15 +1,15 @@
 import 'dotenv/config'
-import express from 'express'
+import express, { Router } from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
 import cors from 'cors'
 import compression from 'compression'
 import rateLimit from 'express-rate-limit'
-import postRoutes from './routes/postRoutes.js'
-import userRoutes from './routes/userRoutes.js'
+import users from './routes/postRoutes'
+import posts from './routes/postRoutes'
 
 const app = express()
-app.use(bodyParser.json({ limit: '50mb', extended: true }))
+app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(
     rateLimit({
@@ -20,16 +20,13 @@ app.use(
 )
 app.use(compression())
 app.use(cors())
-app.use('/posts', postRoutes)
-app.use('/user', userRoutes)
+app.use('/posts', posts)
+app.use('/user', users)
 
-const CONNECTION_URL = process.env.MONGO_URL
-const PORT = process.env.PORT
+const CONNECTION_URL = process.env.MONGO_URL as string
+const PORT = process.env.PORT as string
 mongoose
-    .connect(CONNECTION_URL, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    })
+    .connect(CONNECTION_URL)
     .then(() =>
         app.listen(PORT, () =>
             console.log(`Stackchain server running on port: ${PORT}`)

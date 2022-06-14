@@ -1,9 +1,10 @@
+import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import User from '../models/userModel.js'
+import User from '../models/userModel'
 import 'dotenv/config'
 
-export const signin = async (req, res) => {
+export const signin = async (req: Request, res: Response) => {
     const { email, password } = req.body
     try {
         const existingUser = await User.findOne({ email })
@@ -27,7 +28,7 @@ export const signin = async (req, res) => {
     }
 }
 
-export const signup = async (req, res) => {
+export const signup = async (req: Request, res: Response) => {
     const { email, password, firstName, lastName, confirmPassword } = req.body
     const mailFormat =
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/

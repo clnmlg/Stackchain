@@ -1,15 +1,16 @@
+import { Response } from 'express'
 import jwt from 'jsonwebtoken'
 import 'dotenv/config'
 
 // client request check middleware
 const secret = process.env.JWT_SECRET
 
-const authMiddleware = async (req, res, next) => {
+const authMiddleware = async (req: any, res: Response, next: any) => {
     try {
         const token = req.headers.authorization.split(' ')[1]
         const isCustomAuth = token.length < 500
 
-        let decodedData
+        let decodedData: string | jwt.JwtPayload | any
 
         if (token && isCustomAuth) {
             decodedData = jwt.verify(token, secret)

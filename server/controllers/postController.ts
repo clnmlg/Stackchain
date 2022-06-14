@@ -1,7 +1,8 @@
+import { Request, Response } from 'express'
 import mongoose from 'mongoose'
-import Posts from '../models/postModel.js'
+import Posts from '../models/postModel'
 
-export const getPosts = async (req, res) => {
+export const getPosts = async (req: Request, res: Response) => {
     try {
         const posts = await Posts.find()
         return res.status(200).json(posts)
@@ -10,7 +11,7 @@ export const getPosts = async (req, res) => {
     }
 }
 
-export const createPost = async (req, res) => {
+export const createPost = async (req: any, res: Response) => {
     const post = req.body
     const newPost = new Posts({
         ...post,
@@ -25,7 +26,7 @@ export const createPost = async (req, res) => {
     }
 }
 
-export const updatePost = async (req, res) => {
+export const updatePost = async (req: Request, res: Response) => {
     const { id: _id } = req.params
     const post = req.body
     if (!mongoose.Types.ObjectId.isValid(_id))
@@ -38,7 +39,7 @@ export const updatePost = async (req, res) => {
     res.json(updatedPost)
 }
 
-export const deletePost = async (req, res) => {
+export const deletePost = async (req: Request, res: Response) => {
     const { id } = req.params
     if (!mongoose.Types.ObjectId.isValid(id))
         return res.status(404).send('No post with that id')
@@ -46,7 +47,7 @@ export const deletePost = async (req, res) => {
     res.json({ message: 'Stack deleted successfuly' })
 }
 
-export const likePost = async (req, res) => {
+export const likePost = async (req: any, res: Response) => {
     const { id } = req.params
     if (!req.userId) return res.json({ message: 'Unauthenticated' })
     if (!mongoose.Types.ObjectId.isValid(id))
