@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux'
 import { Container, Grid, Grow } from "@material-ui/core";
 import { getPosts } from '../../redux/actions/posts'
 import styled from '../../styles';
-import Posts from '../../components/Posts/Posts'
-import Form from '../../components/Form/Form'
+import Posts from '../Posts/Posts'
+import Form from '../Form/Form'
 
 const Home = () => {
   const [currentId, setCurrentId] = useState(null);
