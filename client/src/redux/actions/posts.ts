@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
     FETCH_ALL,
     CREATE,
@@ -5,77 +6,56 @@ import {
     DELETE,
     LIKE,
 } from '../../constants/actionTypes'
-import * as api from '../../api'
+import * as api from '../../api/index'
 
-// use Redux to pass/dispatch actions (type+payload) which get us
-// datas from backend api.
+export const getPosts = () => async (dispatch) => {
+    try {
+        const { data } = await api.fetchPosts()
 
-//action to get all posts from api
-export const getPosts =
-    () => async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-        try {
-            const { data } = await api.fetchPosts()
-            dispatch({ type: FETCH_ALL, payload: data })
-        } catch (error) {
-            console.log(error)
-        }
+        dispatch({ type: FETCH_ALL, payload: data })
+    } catch (error) {
+        console.log(error)
     }
+}
 
-export const createPost =
-    (post: {
-        name: any
-        title: string
-        message: string
-        tags?: string | string[]
-        selectedFile: string
-    }) =>
-    async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-        try {
-            const { data } = await api.createPost(post)
-            dispatch({ type: CREATE, payload: data })
-        } catch (error) {
-            console.log(error.message)
-        }
-    }
+export const createPost = (post) => async (dispatch) => {
+    try {
+        const { data } = await api.createPost(post)
 
-export const updatePost =
-    (
-        id: any,
-        post: {
-            name: any
-            title: string
-            message: string
-            tags?: string | string[]
-            selectedFile: string
-        }
-    ) =>
-    async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-        try {
-            const { data } = await api.updatePost(id, post)
-            dispatch({ type: UPDATE, payload: data })
-        } catch (error) {
-            console.log(error)
-        }
+        dispatch({ type: CREATE, payload: data })
+    } catch (error) {
+        console.log(error)
     }
+}
 
-export const deletePost =
-    (id: any) =>
-    async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-        try {
-            await api.deletePost(id)
-            dispatch({ type: DELETE, payload: id })
-        } catch (error) {
-            console.log(error)
-        }
-    }
+export const updatePost = (id, post) => async (dispatch) => {
+    try {
+        const { data } = await api.updatePost(id, post)
 
-export const likePost =
-    (id: any) =>
-    async (dispatch: (arg0: { type: string; payload: any }) => void) => {
-        try {
-            const { data } = await api.likePost(id)
-            dispatch({ type: LIKE, payload: data })
-        } catch (error) {
-            console.log(error.message)
-        }
+        dispatch({ type: UPDATE, payload: data })
+    } catch (error) {
+        console.log(error)
     }
+}
+
+export const likePost = (id) => async (dispatch) => {
+    const user = JSON.parse(localStorage.getItem('profile'))
+
+    try {
+        const { data } = await api.likePost(id, user?.token)
+
+        dispatch({ type: LIKE, payload: data })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const deletePost = (id) => async (dispatch) => {
+    try {
+        await await api.deletePost(id)
+
+        dispatch({ type: DELETE, payload: id })
+    } catch (error) {
+        console.log(error)
+    }
+}

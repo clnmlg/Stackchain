@@ -1,4 +1,5 @@
-import React, { Dispatch, useState } from 'react'
+// @ts-nocheck
+import React, { useState } from 'react'
 import {
     Avatar,
     Button,
@@ -25,12 +26,12 @@ const initialState = {
 function Auth() {
     const classes = createStyled()
     const dispatch = useDispatch()
-    const history = useNavigate()
+    const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [isSignup, setIsSignup] = useState(false)
     const [formData, setFormData] = useState(initialState)
 
-    const handleShowPasword = (props: boolean) =>
+    const handleShowPasword = () =>
         setShowPassword((prevShowPassword) => !prevShowPassword)
 
     const switchMode = () => {
@@ -38,16 +39,16 @@ function Auth() {
         handleShowPasword(false)
     }
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         if (isSignup) {
-            dispatch<any>(signup(formData, history))
+            dispatch(signup(formData, navigate))
         } else {
-            dispatch<any>(signin(formData, history))
+            dispatch(signin(formData, navigate))
         }
     }
 
-    const handleChange = (e: any) => {
+    const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
@@ -69,11 +70,13 @@ function Auth() {
                                     label="First Name"
                                     handleChange={handleChange}
                                     autoFocus
+                                    half
                                 />
                                 <Input
                                     name="lastName"
                                     label="Last Name"
                                     handleChange={handleChange}
+                                    half
                                 />
                             </>
                         )}

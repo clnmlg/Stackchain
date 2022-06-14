@@ -5,12 +5,8 @@ import { useSelector } from 'react-redux'
 import Post from './Post/Post.jsx'
 import styled from './styles'
 
-interface IPost {
-    posts: any
-}
-
 const Posts = ({ setCurrentId }) => {
-    const posts = useSelector<IPost>((state) => state.posts)
+    const posts = useSelector((state) => state.posts)
     const classes = styled()
     return !posts.length ? (
         <CircularProgress />

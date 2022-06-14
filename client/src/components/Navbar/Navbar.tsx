@@ -9,7 +9,7 @@ import decode from 'jwt-decode'
 
 const Navbar = () => {
     const classes = styled()
-    const history = useNavigate()
+    const navigate = useNavigate()
     const location = useLocation()
     const dispatch = useDispatch()
     const [user, setUser] = useState(
@@ -18,8 +18,8 @@ const Navbar = () => {
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT })
-        history.push('/auth')
         setUser(null)
+        navigate('/')
     }
     useEffect(() => {
         const token = user?.token

@@ -1,14 +1,15 @@
 import 'dotenv/config'
+import cors from 'cors'
 import express, { Router } from 'express'
 import bodyParser from 'body-parser'
 import mongoose from 'mongoose'
-import cors from 'cors'
 import compression from 'compression'
 import rateLimit from 'express-rate-limit'
-import users from './routes/postRoutes'
-import posts from './routes/postRoutes'
+import postRoutes from './routes/postRoutes'
+import userRouter from './routes/userRoutes'
 
 const app = express()
+app.use(cors())
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(
@@ -19,9 +20,8 @@ app.use(
     })
 )
 app.use(compression())
-app.use(cors())
-app.use('/posts', posts)
-app.use('/user', users)
+app.use('/posts', postRoutes)
+app.use('/user', userRouter)
 
 const CONNECTION_URL = process.env.MONGO_URL as string
 const PORT = process.env.PORT as string

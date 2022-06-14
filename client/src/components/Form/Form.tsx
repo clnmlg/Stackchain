@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 import { Button, Typography, Paper, TextField } from '@material-ui/core'
 import FileBase from 'react-file-base64'
@@ -5,25 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createPost, updatePost } from '../../redux/actions/posts'
 import styled from './styles'
 
-interface IPostData {
-    title: string
-    message: string
-    tags?: string | string[]
-    selectedFile: string
-}
-
-interface IPost {
-    posts?: IPostData
-}
-
 const Form = ({ currentId, setCurrentId }) => {
-    const [postData, setPostData] = useState<IPostData>({
+    const [postData, setPostData] = useState({
         title: '',
         message: '',
         tags: '',
         selectedFile: '',
     })
-    const post = useSelector((state: any) =>
+    const post = useSelector((state) =>
         currentId
             ? state.posts.find((p: { _id: any }) => p._id === currentId)
             : null

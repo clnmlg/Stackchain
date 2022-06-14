@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react'
 import {
     Card,
@@ -57,7 +58,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Button
                     size="small"
                     color="primary"
-                    onClick={() => dispatch<any>(likePost(post._id))}
+                    onClick={() => dispatch(likePost(post._id))}
                 >
                     <ThumbUpAltIcon fontSize="small" /> &nbsp;Like&nbsp;{' '}
                     {post.likeCount}{' '}
@@ -65,7 +66,7 @@ const Post = ({ post, setCurrentId }) => {
                 <Button
                     size="small"
                     color="primary"
-                    onClick={() => dispatch<any>(deletePost(post._id))}
+                    onClick={() => dispatch(deletePost(post._id))}
                 >
                     <DeleteIcon fontSize="small" /> &nbsp;Delete&nbsp;
                 </Button>

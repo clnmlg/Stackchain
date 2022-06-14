@@ -1,4 +1,6 @@
+// @ts-check
 import { AUTH } from '../../constants/actionTypes'
+import { useNavigate } from 'react-router-dom'
 import * as api from '../../api'
 
 export const signin =
@@ -10,13 +12,13 @@ export const signin =
             password: string
             confirmPassword: string
         },
-        history: any
+        navigate: any
     ) =>
     async (dispatch: (arg0: { type: string; data: [] }) => void) => {
         try {
             const { data } = await api.signIn(formData)
             dispatch({ type: AUTH, data })
-            history.push('/')
+            navigate('/')
         } catch (error) {
             console.log(error)
         }
@@ -31,13 +33,13 @@ export const signup =
             password: string
             confirmPassword: string
         },
-        history: any
+        navigate: any
     ) =>
     async (dispatch: (arg0: { type: string; data: [] }) => void) => {
         try {
             const { data } = await api.signUp(formData)
             dispatch({ type: AUTH, data })
-            history.push('/')
+            navigate('/')
         } catch (error) {
             console.log(error)
         }

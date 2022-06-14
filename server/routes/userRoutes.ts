@@ -1,9 +1,9 @@
-//route file for posts
 import express from 'express'
+const router = express.Router()
+
 import { signin, signup } from '../controllers/userController'
-const user = express.Router()
 
-user.post('/signin', signin)
-user.post('/signup', signup)
+router.post('/signin', signin)
+router.post('/signup', signup)
 
-export default user
+export default router
