@@ -31,7 +31,7 @@ const Navbar = () => {
     }, [location])
 
     return (
-        <AppBar className={classes.appBar} position="static" color="inherit">
+        <AppBar className={classes.appBar} position="static" color="default">
             <div className={classes.brandContainer}>
                 <Typography
                     component={Link}

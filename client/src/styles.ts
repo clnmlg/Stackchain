@@ -7,7 +7,7 @@ export default makeStyles((theme) => ({
         },
     },
     appBar: {
-        borderRadius: 12,
+        borderRadius: 16,
         margin: '30px 0',
         display: 'flex',
         flexDirection: 'row',
@@ -15,9 +15,6 @@ export default makeStyles((theme) => ({
         alignItems: 'center',
     },
     heading: {
-        color: 'rgba(0,183,255, 1)',
-    },
-    image: {
-        marginLeft: '15px',
+        color: 'rgb(16, 24, 38)',
     },
 }))

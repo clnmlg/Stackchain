@@ -12,7 +12,7 @@ const authMiddleware = async (req: any, res: Response, next: any) => {
         let decodedData: string | jwt.JwtPayload | any
 
         if (token && isCustomAuth) {
-            decodedData = jwt.verify(token, process.env.JWT_SECRET as string)
+            decodedData = jwt.verify(token, (process.env.JWT_SECRET) as string)
 
             req.userId = decodedData?.id
         } else {
