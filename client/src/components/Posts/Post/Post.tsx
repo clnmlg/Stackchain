@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Card,
     CardActions,
@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core'
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
 import DeleteIcon from '@mui/icons-material/Delete'
+import ThumbUpAltOutlined from '@mui/icons-material/ThumbUpAltOutlined'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import moment from 'moment'
 import styled from './styles'
@@ -18,6 +19,46 @@ import { deletePost, likePost } from '../../../redux/actions/posts'
 
 const Post = ({ post, setCurrentId }) => {
     const dispatch = useDispatch()
+    const user = JSON.parse(localStorage.getItem('profile'))
+    const userId = user?.result?._id
+    const hasLikedPost = post.likes.find((like) => like === userId)
+
+    const [likes, setLikes] = useState(post?.likes)
+    const handleLike = async () => {
+        dispatch(likePost(post._id))
+
+        if (hasLikedPost) {
+            setLikes(post.likes.filter((id) => id !== userId))
+        } else {
+            setLikes([...post.likes, userId])
+        }
+    }
+
+    const Likes = () => {
+        if (likes.length > 0) {
+            return likes.find((like) => like === userId) ? (
+                <>
+                    <ThumbUpAltIcon fontSize="small" />
+                    &nbsp;
+                    {likes.length > 2
+                        ? `You and ${likes.length - 1} others`
+                        : `${likes.length} like${likes.length > 1 ? 's' : ''}`}
+                </>
+            ) : (
+                <>
+                    <ThumbUpAltOutlined fontSize="small" />
+                    &nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
+                </>
+            )
+        }
+
+        return (
+            <>
+                <ThumbUpAltOutlined fontSize="small" />
+                &nbsp;Like
+            </>
+        )
+    }
     const classes = styled()
     return (
         <Card className={classes.card}>
@@ -58,18 +99,21 @@ const Post = ({ post, setCurrentId }) => {
                 <Button
                     size="small"
                     color="primary"
-                    onClick={() => dispatch(likePost(post._id))}
+                    disabled={!user?.result}
+                    onClick={handleLike}
                 >
-                    <ThumbUpAltIcon fontSize="small" /> &nbsp;Like&nbsp;{' '}
-                    {post.likeCount}{' '}
+                    <Likes />
                 </Button>
-                <Button
-                    size="small"
-                    color="primary"
-                    onClick={() => dispatch(deletePost(post._id))}
-                >
-                    <DeleteIcon fontSize="small" /> &nbsp;Delete&nbsp;
-                </Button>
+                {(user?.result?.googleId === post?.creator ||
+                    user?.result?._id === post?.creator) && (
+                    <Button
+                        size="small"
+                        color="secondary"
+                        onClick={() => dispatch(deletePost(post._id))}
+                    >
+                        <DeleteIcon fontSize="small" /> &nbsp; Delete
+                    </Button>
+                )}
             </CardActions>
         </Card>
     )
