@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import {
     Card,
@@ -17,18 +16,18 @@ import styled from './styles'
 import { useDispatch } from 'react-redux'
 import { deletePost, likePost } from '../../../redux/actions/posts'
 
-const Post = ({ post, setCurrentId }) => {
+const Post = ({ post, setCurrentId }: any) => {
     const dispatch = useDispatch()
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const user = JSON.parse(localStorage.getItem('profile') as string)
     const userId = user?.result?._id
-    const hasLikedPost = post.likes.find((like) => like === userId)
+    const hasLikedPost = post.likes.find((like: any) => like === userId)
 
     const [likes, setLikes] = useState(post?.likes)
     const handleLike = async () => {
-        dispatch(likePost(post._id))
+        dispatch<any>(likePost(post._id))
 
         if (hasLikedPost) {
-            setLikes(post.likes.filter((id) => id !== userId))
+            setLikes(post.likes.filter((id: any) => id !== userId))
         } else {
             setLikes([...post.likes, userId])
         }
@@ -36,7 +35,7 @@ const Post = ({ post, setCurrentId }) => {
 
     const Likes = () => {
         if (likes.length > 0) {
-            return likes.find((like) => like === userId) ? (
+            return likes.find((like: any) => like === userId) ? (
                 <>
                     <ThumbUpAltIcon fontSize="small" />
                     &nbsp;
@@ -75,7 +74,7 @@ const Post = ({ post, setCurrentId }) => {
             </div>
             <div className={classes.details}>
                 <Typography variant="body2" color="textSecondary">
-                    {post.tags.map((tag) => `#${tag} `)}
+                    {post.tags.map((tag: any) => `#${tag} `)}
                 </Typography>
             </div>
             <Typography className={classes.title} variant="h5" gutterBottom>
@@ -100,7 +99,7 @@ const Post = ({ post, setCurrentId }) => {
                         <Button
                             size="small"
                             color="secondary"
-                            onClick={() => dispatch(deletePost(post._id))}
+                            onClick={() => dispatch<any>(deletePost(post._id))}
                         >
                             <DeleteIcon fontSize="small" /> &nbsp; Delete
                         </Button>

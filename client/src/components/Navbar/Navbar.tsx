@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { AppBar, Avatar, Toolbar, Typography, Button } from '@material-ui/core'
@@ -13,7 +12,7 @@ const Navbar = () => {
     const location = useLocation()
     const dispatch = useDispatch()
     const [user, setUser] = useState(
-        JSON.parse(localStorage.getItem('profile'))
+        JSON.parse(localStorage.getItem('profile') as string)
     )
 
     const logout = () => {
@@ -24,10 +23,10 @@ const Navbar = () => {
     useEffect(() => {
         const token = user?.token
         if (token) {
-            const decodedToken = decode(token)
+            const decodedToken = decode(token) as any
             if (decodedToken.exp * 1000 < new Date().getTime()) logout()
         }
-        setUser(JSON.parse(localStorage.getItem('profile')))
+        setUser(JSON.parse(localStorage.getItem('profile') as string))
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location])
 

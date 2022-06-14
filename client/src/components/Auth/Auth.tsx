@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { useState } from 'react'
 import {
     Avatar,
@@ -31,7 +30,7 @@ function Auth() {
     const [isSignup, setIsSignup] = useState(false)
     const [formData, setFormData] = useState(initialState)
 
-    const handleShowPasword = () =>
+    const handleShowPasword = (props: boolean) =>
         setShowPassword((prevShowPassword) => !prevShowPassword)
 
     const switchMode = () => {
@@ -39,16 +38,16 @@ function Auth() {
         handleShowPasword(false)
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: { preventDefault: () => void }) => {
         e.preventDefault()
         if (isSignup) {
-            dispatch(signup(formData, navigate))
+            dispatch<any>(signup(formData, navigate))
         } else {
-            dispatch(signin(formData, navigate))
+            dispatch<any>(signin(formData, navigate))
         }
     }
 
-    const handleChange = (e) => {
+    const handleChange = (e: { target: { name: any; value: any } }) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
@@ -70,12 +69,14 @@ function Auth() {
                                     label="First Name"
                                     handleChange={handleChange}
                                     autoFocus
+                                    // @ts-ignore
                                     half
                                 />
                                 <Input
                                     name="lastName"
                                     label="Last Name"
                                     handleChange={handleChange}
+                                    // @ts-ignore
                                     half
                                 />
                             </>

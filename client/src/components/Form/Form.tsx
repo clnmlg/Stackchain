@@ -1,26 +1,27 @@
-// @ts-nocheck
 import React, { useState, useEffect } from 'react'
 import { Button, Typography, Paper, TextField } from '@material-ui/core'
+//@ts-ignore
 import FileBase from 'react-file-base64'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPost, updatePost } from '../../redux/actions/posts'
 import styled from './styles'
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ currentId, setCurrentId }: any) => {
     const [postData, setPostData] = useState({
         title: '',
         message: '',
         tags: '',
         selectedFile: '',
     })
-    const post = useSelector((state) =>
+    const post = useSelector((state: any) =>
         currentId
             ? state.posts.find((p: { _id: any }) => p._id === currentId)
             : null
     )
     const dispatch = useDispatch()
     const classes = styled()
-    const user = JSON.parse(localStorage.getItem('profile'))
+    const token = localStorage.getItem('profile') as string
+    const user = JSON.parse(token)
 
     useEffect(() => {
         if (post) setPostData(post)
@@ -96,7 +97,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     label="Tags (coma separated)"
                     fullWidth
                     value={postData.tags}
-                    onChange={(e) =>
+                    onChange={(e: any) =>
                         setPostData({
                             ...postData,
                             tags: e.target.value.split(','),
@@ -107,7 +108,7 @@ const Form = ({ currentId, setCurrentId }) => {
                     <FileBase
                         type="file"
                         multiple={false}
-                        onDone={({ base64 }) =>
+                        onDone={({ base64 }: any) =>
                             setPostData({ ...postData, selectedFile: base64 })
                         }
                     />

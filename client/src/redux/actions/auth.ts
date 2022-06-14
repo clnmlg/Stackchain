@@ -1,6 +1,4 @@
-// @ts-check
 import { AUTH } from '../../constants/actionTypes'
-import { useNavigate } from 'react-router-dom'
 import * as api from '../../api'
 
 export const signin =
