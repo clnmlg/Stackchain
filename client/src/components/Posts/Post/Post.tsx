@@ -1,27 +1,14 @@
 import React, { useState } from 'react'
-import {
-    Card,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Button,
-    Typography,
-} from '@material-ui/core'
-import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt'
-import DeleteIcon from '@mui/icons-material/Delete'
-import ThumbUpAltOutlined from '@mui/icons-material/ThumbUpAltOutlined'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import moment from 'moment'
-import styled from './styles'
 import { useDispatch } from 'react-redux'
 import { deletePost, likePost } from '../../../redux/actions/posts'
-
+import { Flex, Box, Icon, chakra, Image } from '@chakra-ui/react'
+import { GoPencil, GoThumbsup, GoTrashcan } from 'react-icons/go'
 const Post = ({ post, setCurrentId }: any) => {
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('profile') as string)
     const userId = user?.result?._id
     const hasLikedPost = post.likes.find((like: any) => like === userId)
-
     const [likes, setLikes] = useState(post?.likes)
     const handleLike = async () => {
         dispatch<any>(likePost(post._id))
@@ -32,12 +19,11 @@ const Post = ({ post, setCurrentId }: any) => {
             setLikes([...post.likes, userId])
         }
     }
-
     const Likes = () => {
         if (likes.length > 0) {
             return likes.find((like: any) => like === userId) ? (
                 <>
-                    <ThumbUpAltIcon fontSize="small" />
+                    <GoThumbsup />
                     &nbsp;
                     {likes.length > 2
                         ? `You and ${likes.length - 1} others`
@@ -45,7 +31,7 @@ const Post = ({ post, setCurrentId }: any) => {
                 </>
             ) : (
                 <>
-                    <ThumbUpAltOutlined fontSize="small" />
+                    <GoThumbsup />
                     &nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
                 </>
             )
@@ -53,69 +39,141 @@ const Post = ({ post, setCurrentId }: any) => {
 
         return (
             <>
-                <ThumbUpAltOutlined fontSize="small" />
+                <GoThumbsup />
                 &nbsp;Like
             </>
         )
     }
-    const classes = styled()
+
     return (
-        <Card className={classes.card} variant="outlined">
-            <CardMedia
-                className={classes.media}
-                image={post.selectedFile}
-                title={post.title}
-            />
-            <div className={classes.overlay}>
-                <Typography variant="h6">{post.name}</Typography>
-                <Typography variant="body2">
-                    {moment(post.createdAt).fromNow()}
-                </Typography>
-            </div>
-            <div className={classes.details}>
-                <Typography variant="body2" color="textSecondary">
-                    {post.tags.map((tag: any) => `#${tag} `)}
-                </Typography>
-            </div>
-            <Typography className={classes.title} variant="h5" gutterBottom>
-                {post.title}
-            </Typography>
-            <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    {post.message}
-                </Typography>
-            </CardContent>
-            <CardActions className={classes.cardActions}>
-                <Button
-                    size="small"
-                    color="primary"
-                    disabled={!user?.result}
-                    onClick={handleLike}
+        <>
+            <Flex w="full">
+                <Box
+                    justifyContent="space-between"
+                    flex-direction={'column'}
+                    rounded="lg"
+                    shadow="dark-lg"
+                    border="1px"
+                    borderColor={' #FF0080'}
+                    position={'relative'}
+                    m={'5'}
+                    w="sm"
+                    mx="auto"
+                    overflow="hidden"
                 >
-                    <Likes />
-                </Button>
-                {user?.result?._id === post?.creator && (
-                    <>
-                        <Button
-                            size="small"
-                            color="secondary"
-                            onClick={() => dispatch<any>(deletePost(post._id))}
+                    <Flex justifyContent="flex-end" alignItems="center">
+                        <chakra.span
+                            p={6}
+                            rounded="full"
+                            textTransform="uppercase"
+                            fontSize="xs"
+                            textColor={'#555D6D'}
                         >
-                            <DeleteIcon fontSize="small" /> &nbsp; Delete
-                        </Button>
-                        <div className={classes.overlay2}>
-                            <Button
-                                style={{ color: 'white' }}
-                                size="small"
-                                onClick={() => setCurrentId(post._id)}
-                            >
-                                <MoreHorizIcon fontSize="medium" />
-                            </Button>
-                        </div>
-                    </>
-                )}
-            </CardActions>
-        </Card>
+                            {moment(post.createdAt).fromNow()}
+                        </chakra.span>
+                    </Flex>
+                    <Flex alignItems="center" m={3}>
+                        <Image
+                            borderRadius={'xl'}
+                            w={'full'}
+                            h={56}
+                            fit="cover"
+                            objectPosition="center"
+                            src={post.selectedFile}
+                            alt="avatar"
+                        />
+                    </Flex>
+
+                    <Flex alignItems="center" px={6} py={3} bg="gray.900">
+                        <Icon h={6} w={6} color="white" />
+
+                        <chakra.h1
+                            mx={3}
+                            color="white"
+                            fontWeight="bold"
+                            fontSize="lg"
+                        >
+                            {post.title}
+                        </chakra.h1>
+                    </Flex>
+
+                    <Box py={4} px={6}>
+                        <chakra.h1
+                            fontSize="xl"
+                            fontWeight="bold"
+                            color="gray.800"
+                            _dark={{
+                                color: 'white',
+                            }}
+                        >
+                            {post.name}
+                        </chakra.h1>
+
+                        <chakra.p
+                            py={2}
+                            color="gray.700"
+                            _dark={{
+                                color: 'gray.400',
+                            }}
+                        >
+                            {post.message}
+                        </chakra.p>
+                    </Box>
+                    <Box p={6}>
+                        <chakra.span
+                            fontSize="xs"
+                            textTransform="uppercase"
+                            color="brand.600"
+                            _dark={{
+                                color: 'brand.400',
+                            }}
+                        >
+                            {post.tags.map((tag: any) => `#${tag} `)}
+                        </chakra.span>
+                    </Box>
+                    <Flex
+                        alignItems="center"
+                        justifyContent="space-between"
+                        px={4}
+                        py={2}
+                        bg="gray.900"
+                        roundedBottom="lg"
+                    >
+                        <chakra.button
+                            px={2}
+                            py={1}
+                            bg="'transparent"
+                            disabled={!user?.result}
+                            onClick={handleLike}
+                        >
+                            <Likes />
+                        </chakra.button>
+                        {user?.result?._id === post?.creator && (
+                            <>
+                                <chakra.button
+                                    px={2}
+                                    py={1}
+                                    bg="'transparent"
+                                    onClick={() =>
+                                        dispatch<any>(deletePost(post._id))
+                                    }
+                                >
+                                    <GoTrashcan />
+                                </chakra.button>
+                                <chakra.button
+                                    px={2}
+                                    py={1}
+                                    bg="'transparent"
+                                    onClick={() => setCurrentId(post._id)}
+                                >
+                                    <GoPencil />
+                                </chakra.button>
+                            </>
+                        )}
+                    </Flex>
+                </Box>
+            </Flex>
+        </>
     )
 }
 

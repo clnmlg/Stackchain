@@ -6,13 +6,14 @@ import 'dotenv/config'
 
 const authMiddleware = async (req: any, res: Response, next: any) => {
     try {
-        const token = (req.headers.authorization.split(' ')[1]) as string
+        const reqHeader = req.headers.authorization
+        const token = reqHeader.split(' ')[1] as string
         const isCustomAuth = token.length < 500
 
         let decodedData: string | jwt.JwtPayload | any
 
         if (token && isCustomAuth) {
-            decodedData = jwt.verify(token, (process.env.JWT_SECRET) as string)
+            decodedData = jwt.verify(token, process.env.JWT_SECRET as string)
 
             req.userId = decodedData?.id
         } else {

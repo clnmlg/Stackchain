@@ -1,5 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import App from './App'
+import { createRoot } from 'react-dom/client'
+import { ChakraProvider } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import {
     legacy_createStore as createStore,
@@ -8,15 +10,16 @@ import {
 } from 'redux'
 import thunk from 'redux-thunk'
 import reducers from './redux/reducers'
-import App from './App'
 import './index.css'
 
-// initialise redux store
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
+const container = document.getElementById('root')
+const root = createRoot(container!)
 
-ReactDOM.render(
+root.render(
     <Provider store={store}>
-        <App />
-    </Provider>,
-    document.getElementById('root')
+        <ChakraProvider>
+            <App />
+        </ChakraProvider>
+    </Provider>
 )

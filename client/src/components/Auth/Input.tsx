@@ -1,59 +1,32 @@
-import React, { HTMLInputTypeAttribute } from 'react'
-import { TextField, Grid, InputAdornment, IconButton } from '@material-ui/core'
-import Visibiliby from '@mui/icons-material/Visibility'
-import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import { Box, Input } from '@chakra-ui/react'
+import React from 'react'
 
 interface InputInterface {
-    name: string
-    label: string
+    name: any
+    label: any
     handleChange: any
     autoFocus?: boolean
     half?: string | null
     type?: any
-    handleShowPassword?: any
 }
 
-function Input({
+function InputTemp({
     half,
     name,
-    label,
     handleChange,
     autoFocus,
     type,
-    handleShowPassword,
 }: InputInterface) {
-    return (
-        <Grid item xs={12} sm={half ? 6 : 12}>
-            <TextField
+    ;<>
+        <Box>
+            <Input
                 name={name}
                 onChange={handleChange}
-                variant="outlined"
-                required
-                fullWidth
-                label={label}
-                autoFocus={autoFocus}
                 type={type}
-                // @ts-ignore
-                InputProps={
-                    name === 'password'
-                        ? {
-                              endAdornment: (
-                                  <InputAdornment position="end">
-                                      <IconButton onClick={handleShowPassword}>
-                                          {type === 'password' ? (
-                                              <Visibiliby />
-                                          ) : (
-                                              <VisibilityOff />
-                                          )}
-                                      </IconButton>
-                                  </InputAdornment>
-                              ),
-                          }
-                        : null
-                }
+                autoFocus={autoFocus}
             />
-        </Grid>
-    )
+        </Box>
+    </>
 }
 
 export default Input
