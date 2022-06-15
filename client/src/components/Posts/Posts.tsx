@@ -1,28 +1,36 @@
+import {
+    Box,
+    CircularProgress,
+    SimpleGrid,
+    useMediaQuery,
+} from '@chakra-ui/react'
 import React from 'react'
-import { Grid, CircularProgress } from '@material-ui/core'
 import { useSelector } from 'react-redux'
 import Post from './Post/Post.jsx'
-import styled from './styles'
 
 const Posts = ({ setCurrentId }: any) => {
     const posts = useSelector((state: any) => state.posts)
-    const classes = styled()
+    const [isLargerThanMD] = useMediaQuery('(min-width: 48em)')
     return !posts.length ? (
         <CircularProgress />
     ) : (
-        <Grid
-            //@ts-ignore
-            className={classes.container}
-            container
+        <SimpleGrid
+            columns={[3, null, 3]}
+            spacing={10}
+            display="flex"
+            flexWrap={'wrap'}
             alignItems="stretch"
-            spacing={3}
+            justifyContent={'center'}
+            py="16"
+            px={isLargerThanMD ? '16' : '6'}
+            flexDirection={isLargerThanMD ? 'row' : 'column'}
         >
             {posts.map((post: { _id: React.Key | null | undefined }) => (
-                <Grid key={post._id} item xs={12} sm={6}>
+                <Box key={post._id}>
                     <Post post={post} setCurrentId={setCurrentId} />
-                </Grid>
+                </Box>
             ))}
-        </Grid>
+        </SimpleGrid>
     )
 }
 
