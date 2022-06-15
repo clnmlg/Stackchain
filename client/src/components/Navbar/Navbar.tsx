@@ -70,7 +70,7 @@ const Navbar = () => {
                             bgClip="text"
                             fontSize={10}
                         >
-                            v 1.0 ⚡️
+                            v 1.0
                         </Spacer>
                     </Flex>
                     <Flex position="absolute" right="1rem" align="center">

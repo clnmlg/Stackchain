@@ -80,16 +80,12 @@ function Auth() {
                         <Heading
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
                             bgClip="text"
-                            mb={4}
                             fontSize={{
-                                base: '5xl',
+                                sm: '5xl',
                                 md: '7xl',
+                                lg: '8xl',
                             }}
                             fontWeight="bold"
-                            lineHeight={{
-                                base: 'shorter',
-                                md: 'none',
-                            }}
                             letterSpacing={{
                                 base: 'normal',
                                 md: 'tight',
@@ -111,9 +107,8 @@ function Auth() {
                             letterSpacing="wider"
                         >
                             Stack make users feels like they're in the same
-                            room. Create stacks, watch friends stream their
-                            games, or gather up and have a drawing session with
-                            screen share.
+                            room. Create stacks, discuss with people and expand
+                            your knowledge about blockchain.
                         </chakra.p>
                     </GridItem>
                     <GridItem
@@ -126,21 +121,18 @@ function Auth() {
                             as="form"
                             onSubmit={handleSubmit}
                             mb={6}
-                            rounded="lg"
-                            shadow="xl"
-                            border={'1px'}
-                            borderColor="#555D6D"
+                            rounded="xl"
+                            shadow="dark-lg"
+                            border="1px"
+                            borderColor={' #FF0080'}
                         >
-                            <Center
-                                pb={0}
-                                mt={2}
-                                color="gray.700"
-                                _dark={{
-                                    color: 'gray.600',
-                                }}
-                            >
+                            <Center pb={0} mt={2} color="gray.600">
                                 <chakra.p pt={2}>
-                                    {isSignup ? 'Sign Up' : 'Sign In'}
+                                    {isSignup ? (
+                                        <Heading>Signup</Heading>
+                                    ) : (
+                                        <Heading>Login</Heading>
+                                    )}
                                 </chakra.p>
                             </Center>
                             <SimpleGrid

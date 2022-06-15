@@ -12,6 +12,9 @@ const AboutCard = () => {
                         h={12}
                         w={12}
                         rounded="md"
+                        shadow="dark-lg"
+                        border="1px"
+                        borderColor={' #FF0080'}
                     >
                         <Icon
                             boxSize={6}
@@ -39,7 +42,8 @@ const AboutCard = () => {
     return (
         <Flex
             border={'1px'}
-            borderColor={'#555D6D'}
+            shadow="dark-lg"
+            borderColor={' #FF0080'}
             borderRadius={'md'}
             m={5}
             w="auto"
@@ -74,7 +78,7 @@ const AboutCard = () => {
                             textTransform="uppercase"
                             letterSpacing="wide"
                         >
-                            Transactions
+                            Stackchain
                         </chakra.h2>
                         <chakra.p
                             mt={2}
@@ -89,7 +93,7 @@ const AboutCard = () => {
                                 color: 'gray.900',
                             }}
                         >
-                            A better way to send money
+                            A better way to share knowledge
                         </chakra.p>
                         <chakra.p
                             mt={4}
@@ -100,9 +104,8 @@ const AboutCard = () => {
                             }}
                             color="gray.500"
                         >
-                            Lorem ipsum dolor sit amet consect adipisicing elit.
-                            Possimus magnam voluptatum cupiditate veritatis in
-                            accusamus quisquam.
+                            Stackchain is a free open source crypto
+                            communication platform for investors
                         </chakra.p>
                     </Box>
 
@@ -126,7 +129,7 @@ const AboutCard = () => {
                             }}
                         >
                             <Feature
-                                title="Competitive exchange rates"
+                                title="Consolidate technologies and improve governance"
                                 icon={
                                     <path
                                         strokeLinecap="round"
@@ -136,14 +139,14 @@ const AboutCard = () => {
                                     />
                                 }
                             >
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Maiores impedit perferendis
-                                suscipit eaque, iste dolor cupiditate blanditiis
-                                ratione.
+                                Everyone including developers & crypto investors
+                                share their public stacks, favorite tools,
+                                advices, and opinions on thousands of blockchain
+                                technologies and crypto assets.
                             </Feature>
 
                             <Feature
-                                title=" No hidden fees"
+                                title="Open DAO"
                                 icon={
                                     <path
                                         strokeLinecap="round"
@@ -153,14 +156,12 @@ const AboutCard = () => {
                                     />
                                 }
                             >
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Maiores impedit perferendis
-                                suscipit eaque, iste dolor cupiditate blanditiis
-                                ratione.
+                                Empower everyone to make data-driven investment
+                                decisions.
                             </Feature>
 
                             <Feature
-                                title="Transfers are instant"
+                                title="Realtime tracking"
                                 icon={
                                     <path
                                         strokeLinecap="round"
@@ -170,10 +171,8 @@ const AboutCard = () => {
                                     />
                                 }
                             >
-                                Lorem ipsum, dolor sit amet consectetur
-                                adipisicing elit. Maiores impedit perferendis
-                                suscipit eaque, iste dolor cupiditate blanditiis
-                                ratione.
+                                Ask for advice, contribute your expertise, and
+                                stay current with the latest blockchain trends.
                             </Feature>
 
                             <Feature

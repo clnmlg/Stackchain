@@ -7,6 +7,7 @@ import Form from '../Form/Form'
 import Hero from './Hero'
 import { GridItem, Heading } from '@chakra-ui/react'
 import AboutCard from './AboutCards'
+import LandingAction from './LandingAction'
 
 const Home = () => {
     const [currentId, setCurrentId] = useState(null)
@@ -24,6 +25,7 @@ const Home = () => {
                 <>
                     <Hero />
                     <AboutCard />
+                    <LandingAction />
                 </>
             ) : (
                 <>

@@ -51,14 +51,14 @@ const Post = ({ post, setCurrentId }: any) => {
                 <Box
                     justifyContent="space-between"
                     flex-direction={'column'}
-                    border={'1px'}
-                    borderColor={'#555D6D'}
+                    rounded="lg"
+                    shadow="dark-lg"
+                    border="1px"
+                    borderColor={' #FF0080'}
                     position={'relative'}
                     m={'5'}
                     w="sm"
                     mx="auto"
-                    shadow="dark-lg"
-                    rounded="lg"
                     overflow="hidden"
                 >
                     <Flex justifyContent="flex-end" alignItems="center">
