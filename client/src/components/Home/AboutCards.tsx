@@ -13,7 +13,7 @@ const AboutCard = () => {
                         justifyContent="center"
                         h={12}
                         w={12}
-                        rounded="md"
+                        rounded="3xl"
                         _light={{
                             bg: 'brand.500',
                         }}
@@ -57,7 +57,7 @@ const AboutCard = () => {
 
     return (
         <Flex
-            p={20}
+            p={6}
             w="auto"
             justifyContent="center"
             alignItems="center"
@@ -72,7 +72,7 @@ const AboutCard = () => {
                 _dark={{
                     bg: 'gray.800',
                 }}
-                rounded="xl"
+                rounded="3xl"
             >
                 <Box
                     maxW="7xl"

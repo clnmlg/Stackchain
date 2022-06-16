@@ -10,14 +10,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode } = useColorMode()
     const isDark = colorMode === 'dark'
     return (
         <>
             <Heading
                 bgGradient="linear(to-l, #7928CA, #FF0080)"
                 bgClip="text"
-                fontSize={{ base: '50px', md: '60px', lg: '120px' }}
+                fontSize={{ base: '40px', md: '60px', lg: '120px' }}
                 mr={20}
                 ml={20}
                 fontWeight="extrabold"
@@ -25,16 +25,16 @@ const Hero = () => {
             >
                 From a few people to a whole community.
             </Heading>
-            <Center mt={5}>
+            <Center mt={5} mb={10}>
                 <Link to={'./auth'}>
                     <Button
                         border="1px"
                         variant={'ghost'}
-                        borderColor={isDark ? 'gray.500' : 'gray.400'}
+                        borderColor={isDark ? 'gray.700' : 'gray.300'}
                         fontWeight="bold"
                         w="44"
                         h="16"
-                        rounded="md"
+                        rounded="3xl"
                     >
                         Launch app
                     </Button>

@@ -51,7 +51,6 @@ const Navbar = () => {
                 mb={20}
                 id="header"
                 w="100%"
-                backgroundColor={isDark ? 'gray.800' : 'gray.100'}
                 borderBottom={'1px'}
                 borderColor={isDark ? 'gray.700' : 'gray.300'}
             >
@@ -87,7 +86,7 @@ const Navbar = () => {
                                 >
                                     <Button
                                         onClick={logout}
-                                        variant="solid"
+                                        variant="unstyled"
                                         aria-label="login"
                                         my={5}
                                         w="100%"
@@ -103,9 +102,10 @@ const Navbar = () => {
                                 >
                                     <Link to="/auth">
                                         <Button
-                                            variant="solid"
+                                            variant="unstyled"
                                             aria-label="login"
                                             my={5}
+                                            mr={5}
                                             w="100%"
                                         >
                                             Launch app
@@ -121,6 +121,7 @@ const Navbar = () => {
                             my={5}
                             aria-label="Open Menu"
                             size="md"
+                            variant={'unstyled'}
                             icon={<HamburgerIcon></HamburgerIcon>}
                             onClick={() => changeDisplay('flex')}
                             display={['flex', 'flex', 'none', 'none']}
@@ -128,9 +129,9 @@ const Navbar = () => {
 
                         <IconButton
                             ml={3}
+                            variant={'unstyled'}
                             aria-label="Toggle Mode"
                             onClick={toggleColorMode}
-                            variant={'ghost'}
                         >
                             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                         </IconButton>
@@ -141,9 +142,7 @@ const Navbar = () => {
                         display={display}
                         bgColor={isDark ? 'gray.800' : 'white'}
                         zIndex={20}
-                        borderWidth={1}
                         boxShadow="md"
-                        borderRadius={20}
                         pos="fixed"
                         top="0"
                         left="0"
@@ -156,6 +155,7 @@ const Navbar = () => {
                                 mr={2}
                                 aria-label="Open Menu"
                                 size="md"
+                                variant={'unstyled'}
                                 icon={<CloseIcon />}
                                 onClick={() => changeDisplay('none')}
                             />
@@ -169,9 +169,8 @@ const Navbar = () => {
                             >
                                 <Link to="/">
                                     <Button
-                                        variant="solid"
+                                        variant="unstyled"
                                         aria-label="login"
-                                        my={5}
                                         w="100%"
                                     >
                                         Home
@@ -186,7 +185,7 @@ const Navbar = () => {
                                 >
                                     <Button
                                         onClick={logout}
-                                        variant="solid"
+                                        variant="unstyled"
                                         aria-label="login"
                                         my={5}
                                         w="100%"
@@ -202,7 +201,7 @@ const Navbar = () => {
                                 >
                                     <Link to="/auth">
                                         <Button
-                                            variant="solid"
+                                            variant="unstyled"
                                             aria-label="login"
                                             my={5}
                                             w="100%"

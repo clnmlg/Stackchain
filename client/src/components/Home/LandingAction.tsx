@@ -1,9 +1,10 @@
 import { Flex, Box, chakra, Stack, Image, useColorMode } from '@chakra-ui/react'
+import { motion } from 'framer-motion'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
 const LandingAction = () => {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode } = useColorMode()
     const isDark = colorMode === 'dark'
     return (
         <>
@@ -60,26 +61,32 @@ const LandingAction = () => {
                         and complete your customer feedback loop.
                     </chakra.p>
                 </Box>
-                <Box
-                    w={{
-                        base: 'full',
-                        md: 10 / 12,
+                <motion.div
+                    whileHover={{
+                        scale: 0.9,
                     }}
-                    mx="auto"
-                    textAlign="center"
                 >
-                    <Image
-                        w="full"
-                        rounded="lg"
-                        shadow="dark-lg"
-                        src={
-                            isDark
-                                ? 'assets/HeroLandingDark.png'
-                                : 'assets/HeroLandingWhite.png'
-                        }
-                        alt="Hellonext feedback boards software screenshot"
-                    />
-                </Box>
+                    <Box
+                        w={{
+                            base: 'full',
+                            md: 10 / 12,
+                        }}
+                        mx="auto"
+                        textAlign="center"
+                    >
+                        <Image
+                            w="full"
+                            rounded="3xl"
+                            shadow="dark-lg"
+                            src={
+                                isDark
+                                    ? 'assets/HeroLandingDark.png'
+                                    : 'assets/HeroLandingWhite.png'
+                            }
+                            alt="Hellonext feedback boards software screenshot"
+                        />
+                    </Box>
+                </motion.div>
             </Flex>
         </>
     )

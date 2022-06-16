@@ -28,7 +28,7 @@ const initialState = {
 }
 
 function Auth() {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode } = useColorMode()
     const isDark = colorMode === 'dark'
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -57,7 +57,7 @@ function Auth() {
 
     return (
         <>
-            <Box px={8} mx="auto">
+            <Box px={20} mx="auto" mb={60}>
                 <SimpleGrid
                     alignItems="center"
                     w={{
@@ -128,7 +128,7 @@ function Auth() {
                             as="form"
                             onSubmit={handleSubmit}
                             mb={6}
-                            rounded="xl"
+                            rounded="3xl"
                             shadow="lg"
                             border="1px"
                             borderColor={isDark ? 'gray.700' : 'gray.500'}
@@ -149,6 +149,7 @@ function Auth() {
                                     <>
                                         <Flex>
                                             <InputTemp
+                                                borderRadius={'3xl'}
                                                 border={'1px'}
                                                 borderColor={
                                                     isDark
@@ -164,6 +165,7 @@ function Auth() {
                                         </Flex>
                                         <Flex>
                                             <InputTemp
+                                                borderRadius={'3xl'}
                                                 border={'1px'}
                                                 borderColor={
                                                     isDark
@@ -181,6 +183,7 @@ function Auth() {
                                 )}
                                 <Flex>
                                     <InputTemp
+                                        borderRadius={'3xl'}
                                         border={'1px'}
                                         borderColor={
                                             isDark ? 'gray.700' : 'gray.500'
@@ -195,6 +198,7 @@ function Auth() {
                                 </Flex>
                                 <Flex>
                                     <InputTemp
+                                        borderRadius={'3xl'}
                                         border={'1px'}
                                         borderColor={
                                             isDark ? 'gray.700' : 'gray.500'
@@ -210,6 +214,7 @@ function Auth() {
                                 {isSignup && (
                                     <Flex>
                                         <InputTemp
+                                            borderRadius={'3xl'}
                                             border={'1px'}
                                             borderColor={
                                                 isDark ? 'gray.700' : 'gray.500'
@@ -225,6 +230,7 @@ function Auth() {
                                 )}
 
                                 <Button
+                                    borderRadius={'2xl'}
                                     type="submit"
                                     border={'1px'}
                                     borderColor={
@@ -238,7 +244,7 @@ function Auth() {
                                     {isSignup ? 'Signup' : 'Login'}
                                 </Button>
                                 <Button
-                                    textColor={'#555D6D'}
+                                    color={isDark ? 'gray.500' : 'gray.500'}
                                     variant="outlined"
                                     w="full"
                                     py={2}

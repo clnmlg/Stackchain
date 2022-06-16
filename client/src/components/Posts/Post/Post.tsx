@@ -51,10 +51,10 @@ const Post = ({ post, setCurrentId }: any) => {
                 <Box
                     justifyContent="space-between"
                     flex-direction={'column'}
-                    rounded="lg"
+                    rounded="3xl"
                     shadow="dark-lg"
                     border="1px"
-                    borderColor={' #FF0080'}
+                    borderColor={'gray.700'}
                     position={'relative'}
                     m={'5'}
                     w="sm"
@@ -64,7 +64,7 @@ const Post = ({ post, setCurrentId }: any) => {
                     <Flex justifyContent="flex-end" alignItems="center">
                         <chakra.span
                             p={6}
-                            rounded="full"
+                            rounded="3xl"
                             textTransform="uppercase"
                             fontSize="xs"
                             textColor={'#555D6D'}
@@ -74,7 +74,7 @@ const Post = ({ post, setCurrentId }: any) => {
                     </Flex>
                     <Flex alignItems="center" m={3}>
                         <Image
-                            borderRadius={'xl'}
+                            borderRadius={'2xl'}
                             w={'full'}
                             h={56}
                             fit="cover"

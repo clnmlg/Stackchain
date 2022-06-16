@@ -1,8 +1,8 @@
-import { Flex, chakra, Icon, useColorMode } from '@chakra-ui/react'
+import { Flex, chakra, Icon, useColorMode, Image, Box } from '@chakra-ui/react'
 import React from 'react'
 
 const Footer = () => {
-    const { colorMode, toggleColorMode } = useColorMode()
+    const { colorMode } = useColorMode()
     const isDark = colorMode === 'dark'
     return (
         <Flex
@@ -47,18 +47,27 @@ const Footer = () => {
                     Stackchain
                 </chakra.a>
 
-                <chakra.p
-                    py={{
-                        base: '2',
-                        sm: '0',
-                    }}
-                    color="gray.800"
-                    _dark={{
-                        color: 'white',
-                    }}
-                >
-                    All rights reserved
-                </chakra.p>
+                <Box display={'flex'}>
+                    <chakra.p
+                        py={{
+                            base: '2',
+                            sm: '0',
+                        }}
+                        color="gray.800"
+                        _dark={{
+                            color: 'white',
+                        }}
+                    >
+                        Built with React{' '}
+                    </chakra.p>
+                    <Image
+                        src="assets/ReactLogo.png"
+                        w={5}
+                        h={5}
+                        mt={1}
+                        ml={2}
+                    />
+                </Box>
 
                 <Flex mx="-2">
                     <chakra.a
