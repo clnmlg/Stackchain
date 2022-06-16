@@ -46,14 +46,16 @@ const Navbar = () => {
 
     return (
         <>
-            <chakra.header id="header">
-                <Flex
-                    w="100%"
-                    px="6"
-                    py="5"
-                    align="center"
-                    justify="space-between"
-                >
+            <chakra.header
+                position={'relative'}
+                mb={20}
+                id="header"
+                w="100%"
+                backgroundColor={isDark ? 'gray.800' : 'gray.100'}
+                borderBottom={'1px'}
+                borderColor={isDark ? 'gray.700' : 'gray.300'}
+            >
+                <Flex px="6" py="5" align="center" justify="space-between">
                     <Flex>
                         <Link to="/">
                             <Heading
@@ -66,9 +68,10 @@ const Navbar = () => {
                             </Heading>
                         </Link>
                         <Spacer
-                            bgColor={'gray.500'}
+                            bgColor={isDark ? 'gray.500' : 'gray.800'}
                             bgClip="text"
                             fontSize={10}
+                            ml={2}
                         >
                             v 1.0
                         </Spacer>
@@ -105,7 +108,7 @@ const Navbar = () => {
                                             my={5}
                                             w="100%"
                                         >
-                                            Sign in
+                                            Launch app
                                         </Button>
                                     </Link>
                                 </motion.div>
@@ -204,7 +207,7 @@ const Navbar = () => {
                                             my={5}
                                             w="100%"
                                         >
-                                            Sign in
+                                            Launch app
                                         </Button>
                                     </Link>
                                 </motion.div>

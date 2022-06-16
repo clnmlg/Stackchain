@@ -5,7 +5,7 @@ import { getPosts } from '../../redux/actions/posts'
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import Hero from './Hero'
-import { GridItem, Heading } from '@chakra-ui/react'
+import { Box, GridItem, Heading } from '@chakra-ui/react'
 import AboutCard from './AboutCards'
 import LandingAction from './LandingAction'
 

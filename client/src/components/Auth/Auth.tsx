@@ -12,6 +12,11 @@ import {
     Flex,
     Button,
     Heading,
+    useColorMode,
+    HStack,
+    Stack,
+    useBreakpointValue,
+    Text,
 } from '@chakra-ui/react'
 
 const initialState = {
@@ -23,6 +28,8 @@ const initialState = {
 }
 
 function Auth() {
+    const { colorMode, toggleColorMode } = useColorMode()
+    const isDark = colorMode === 'dark'
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [isSignup, setIsSignup] = useState(false)
@@ -50,7 +57,7 @@ function Auth() {
 
     return (
         <>
-            <Box px={8} py={24} mx="auto">
+            <Box px={8} mx="auto">
                 <SimpleGrid
                     alignItems="center"
                     w={{
@@ -122,33 +129,32 @@ function Auth() {
                             onSubmit={handleSubmit}
                             mb={6}
                             rounded="xl"
-                            shadow="dark-lg"
+                            shadow="lg"
                             border="1px"
-                            borderColor={' #FF0080'}
+                            borderColor={isDark ? 'gray.700' : 'gray.500'}
                         >
-                            <Center pb={0} mt={2} color="gray.600">
-                                <chakra.p pt={2}>
-                                    {isSignup ? (
-                                        <Heading>Signup</Heading>
-                                    ) : (
-                                        <Heading>Login</Heading>
-                                    )}
-                                </chakra.p>
-                            </Center>
-                            <SimpleGrid
-                                columns={1}
-                                px={6}
-                                py={4}
-                                spacing={4}
-                                color="gray.200"
-                                _dark={{
-                                    color: 'gray.700',
-                                }}
+                            <Center
+                                pb={0}
+                                mt={2}
+                                color={isDark ? 'gray.500' : 'gray.500'}
                             >
+                                {isSignup ? (
+                                    <Heading>Signup</Heading>
+                                ) : (
+                                    <Heading>Login</Heading>
+                                )}
+                            </Center>
+                            <SimpleGrid columns={1} px={6} py={4} spacing={4}>
                                 {isSignup && (
                                     <>
                                         <Flex>
                                             <InputTemp
+                                                border={'1px'}
+                                                borderColor={
+                                                    isDark
+                                                        ? 'gray.700'
+                                                        : 'gray.500'
+                                                }
                                                 autoFocus
                                                 onChange={handleChange}
                                                 name="firstName"
@@ -158,6 +164,12 @@ function Auth() {
                                         </Flex>
                                         <Flex>
                                             <InputTemp
+                                                border={'1px'}
+                                                borderColor={
+                                                    isDark
+                                                        ? 'gray.700'
+                                                        : 'gray.500'
+                                                }
                                                 autoFocus
                                                 onChange={handleChange}
                                                 name="lastName"
@@ -169,6 +181,10 @@ function Auth() {
                                 )}
                                 <Flex>
                                     <InputTemp
+                                        border={'1px'}
+                                        borderColor={
+                                            isDark ? 'gray.700' : 'gray.500'
+                                        }
                                         autoFocus
                                         onChange={handleChange}
                                         name="email"
@@ -179,6 +195,10 @@ function Auth() {
                                 </Flex>
                                 <Flex>
                                     <InputTemp
+                                        border={'1px'}
+                                        borderColor={
+                                            isDark ? 'gray.700' : 'gray.500'
+                                        }
                                         autoFocus
                                         onChange={handleChange}
                                         name="password"
@@ -190,6 +210,10 @@ function Auth() {
                                 {isSignup && (
                                     <Flex>
                                         <InputTemp
+                                            border={'1px'}
+                                            borderColor={
+                                                isDark ? 'gray.700' : 'gray.500'
+                                            }
                                             autoFocus
                                             onChange={handleChange}
                                             name="confirmPassword"
@@ -203,25 +227,25 @@ function Auth() {
                                 <Button
                                     type="submit"
                                     border={'1px'}
-                                    borderColor={'#555D6D'}
+                                    borderColor={
+                                        isDark ? 'gray.700' : 'gray.500'
+                                    }
                                     textColor={'#555D6D'}
                                     variant="ghost"
                                     w="full"
                                     py={2}
                                 >
-                                    {isSignup ? 'Sign Up' : 'Sign In'}
+                                    {isSignup ? 'Signup' : 'Login'}
                                 </Button>
                                 <Button
-                                    border={'1px'}
-                                    borderColor={'#555D6D'}
                                     textColor={'#555D6D'}
-                                    variant="ghost"
+                                    variant="outlined"
                                     w="full"
                                     py={2}
                                     onClick={switchMode}
                                 >
                                     {isSignup
-                                        ? 'Already have an account? Sign in'
+                                        ? 'Already have an account? Login'
                                         : "Don't have an account? Sign Up"}
                                 </Button>
                             </SimpleGrid>
