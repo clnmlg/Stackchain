@@ -14,21 +14,14 @@ const Posts = ({ setCurrentId }: any) => {
     return !posts.length ? (
         <CircularProgress />
     ) : (
-        <Box
-            maxW="7xl"
-            mx="auto"
-            px={{ base: '4', md: '8', lg: '12' }}
-            py={{ base: '6', md: '8', lg: '12' }}
-        >
-            <SimpleGrid
-                columns={[1, null, 3]}
-                columnGap={{ base: '2', md: '5' }}
-                rowGap={{ base: '8', md: '10' }}
-            >
+        <Box maxWidth="1000px" mx="auto" my="auto" p={5}>
+            <SimpleGrid columns={[1, 2, 3]} spacing="15px">
                 {posts.map((post: { _id: React.Key | null | undefined }) => (
-                    <Box key={post._id}>
-                        <Post post={post} setCurrentId={setCurrentId} />
-                    </Box>
+                    <Post
+                        key={post._id}
+                        post={post}
+                        setCurrentId={setCurrentId}
+                    />
                 ))}
             </SimpleGrid>
         </Box>

@@ -29,17 +29,6 @@ const Home = () => {
                 </>
             ) : (
                 <>
-                    <Heading
-                        textAlign={'center'}
-                        m={2}
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
-                        bgClip="text"
-                        fontWeight="semibold"
-                        fontFamily={'unset'}
-                        fontSize={'6xl'}
-                    >
-                        Recent Stacks
-                    </Heading>
                     <GridItem>
                         <Posts setCurrentId={setCurrentId} />
                     </GridItem>
