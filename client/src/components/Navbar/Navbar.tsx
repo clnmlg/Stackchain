@@ -28,7 +28,8 @@ const Navbar = () => {
     const logout = () => {
         dispatch({ type: actionType.LOGOUT })
         setUser(null)
-        navigate('/auth')
+        window.location.reload()
+        navigate('/')
     }
     useEffect(() => {
         const token = user?.token
@@ -95,23 +96,7 @@ const Navbar = () => {
                                     </Button>
                                 </motion.div>
                             ) : (
-                                <motion.div
-                                    whileHover={{
-                                        scale: 1.1,
-                                    }}
-                                >
-                                    <Link to="/auth">
-                                        <Button
-                                            variant="unstyled"
-                                            aria-label="login"
-                                            my={5}
-                                            mr={5}
-                                            w="100%"
-                                        >
-                                            Launch app
-                                        </Button>
-                                    </Link>
-                                </motion.div>
+                                ''
                             )}
                         </Flex>
 
@@ -194,22 +179,7 @@ const Navbar = () => {
                                     </Button>
                                 </motion.div>
                             ) : (
-                                <motion.div
-                                    whileHover={{
-                                        scale: 1.1,
-                                    }}
-                                >
-                                    <Link to="/auth">
-                                        <Button
-                                            variant="unstyled"
-                                            aria-label="login"
-                                            my={5}
-                                            w="100%"
-                                        >
-                                            Launch app
-                                        </Button>
-                                    </Link>
-                                </motion.div>
+                                ''
                             )}
                         </Flex>
                     </Flex>

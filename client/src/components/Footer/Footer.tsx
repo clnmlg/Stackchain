@@ -6,7 +6,11 @@ const Footer = () => {
     const isDark = colorMode === 'dark'
     return (
         <Flex
-            w="auto"
+            position={'fixed'}
+            left="0"
+            bottom="0"
+            right="0"
+            w="full"
             backgroundColor={isDark ? 'gray.800' : 'gray.200'}
             alignItems="center"
             justifyContent="center"
@@ -22,8 +26,8 @@ const Footer = () => {
                 }}
                 align="center"
                 justify="space-between"
-                px="6"
-                py="4"
+                px="10"
+                py="2"
                 bg="white"
                 _dark={{
                     bg: 'gray.800',

@@ -1,8 +1,9 @@
 import React from 'react'
 import App from './App'
 import { createRoot } from 'react-dom/client'
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider, extendTheme } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
+import theme from './extendedTheme'
 import {
     legacy_createStore as createStore,
     applyMiddleware,
@@ -13,12 +14,13 @@ import reducers from './redux/reducers'
 import './index.css'
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)))
+
 const container = document.getElementById('root')
 const root = createRoot(container!)
 
 root.render(
     <Provider store={store}>
-        <ChakraProvider>
+        <ChakraProvider theme={theme}>
             <App />
         </ChakraProvider>
     </Provider>

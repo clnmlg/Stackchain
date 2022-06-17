@@ -84,22 +84,41 @@ function Auth() {
                             lg: 'left',
                         }}
                     >
-                        <Heading
-                            bgGradient="linear(to-l, #7928CA, #FF0080)"
-                            bgClip="text"
-                            fontSize={{
-                                sm: '5xl',
-                                md: '7xl',
-                                lg: '8xl',
-                            }}
-                            fontWeight="bold"
-                            letterSpacing={{
-                                base: 'normal',
-                                md: 'tight',
-                            }}
-                        >
-                            Ready to stack?
-                        </Heading>
+                        {!isSignup ? (
+                            <Heading
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize={{
+                                    sm: '5xl',
+                                    md: '7xl',
+                                    lg: '8xl',
+                                }}
+                                fontWeight="bold"
+                                letterSpacing={{
+                                    base: 'normal',
+                                    md: 'tight',
+                                }}
+                            >
+                                Welcome again.
+                            </Heading>
+                        ) : (
+                            <Heading
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize={{
+                                    sm: '5xl',
+                                    md: '7xl',
+                                    lg: '8xl',
+                                }}
+                                fontWeight="bold"
+                                letterSpacing={{
+                                    base: 'normal',
+                                    md: 'tight',
+                                }}
+                            >
+                                Be part of the stackers.
+                            </Heading>
+                        )}
                         <chakra.p
                             mb={{
                                 base: 10,

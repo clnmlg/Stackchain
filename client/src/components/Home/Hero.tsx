@@ -23,7 +23,7 @@ const Hero = () => {
                 fontWeight="extrabold"
                 textAlign={'center'}
             >
-                From a few people to a whole community.
+                From a few people to a whole community
             </Heading>
             <Center mt={5} mb={10}>
                 <Link to={'./auth'}>
