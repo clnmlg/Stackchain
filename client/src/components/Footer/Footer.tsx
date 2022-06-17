@@ -1,4 +1,4 @@
-import { Flex, chakra, Icon, useColorMode, Image, Box } from '@chakra-ui/react'
+import { Flex, chakra, Icon, useColorMode, Box } from '@chakra-ui/react'
 import React from 'react'
 
 const Footer = () => {
@@ -60,13 +60,6 @@ const Footer = () => {
                     >
                         Built with React{' '}
                     </chakra.p>
-                    <Image
-                        src="assets/ReactLogo.png"
-                        w={5}
-                        h={5}
-                        mt={1}
-                        ml={2}
-                    />
                 </Box>
 
                 <Flex mx="-2">
