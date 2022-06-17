@@ -5,7 +5,7 @@ import { getPosts } from '../../redux/actions/posts'
 import Posts from '../Posts/Posts'
 import Form from '../Form/Form'
 import Hero from './Hero'
-import { GridItem, Heading } from '@chakra-ui/react'
+import { Box, GridItem, Heading } from '@chakra-ui/react'
 import AboutCard from './AboutCards'
 import LandingAction from './LandingAction'
 
@@ -29,17 +29,6 @@ const Home = () => {
                 </>
             ) : (
                 <>
-                    <Heading
-                        textAlign={'center'}
-                        m={2}
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
-                        bgClip="text"
-                        fontWeight="semibold"
-                        fontFamily={'unset'}
-                        fontSize={'6xl'}
-                    >
-                        Recent Stacks
-                    </Heading>
                     <GridItem>
                         <Posts setCurrentId={setCurrentId} />
                     </GridItem>

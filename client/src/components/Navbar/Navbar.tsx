@@ -46,14 +46,15 @@ const Navbar = () => {
 
     return (
         <>
-            <chakra.header id="header">
-                <Flex
-                    w="100%"
-                    px="6"
-                    py="5"
-                    align="center"
-                    justify="space-between"
-                >
+            <chakra.header
+                position={'relative'}
+                mb={20}
+                id="header"
+                w="100%"
+                borderBottom={'1px'}
+                borderColor={isDark ? 'gray.700' : 'gray.300'}
+            >
+                <Flex px="6" py="5" align="center" justify="space-between">
                     <Flex>
                         <Link to="/">
                             <Heading
@@ -66,9 +67,10 @@ const Navbar = () => {
                             </Heading>
                         </Link>
                         <Spacer
-                            bgColor={'gray.500'}
+                            bgColor={isDark ? 'gray.500' : 'gray.800'}
                             bgClip="text"
                             fontSize={10}
+                            ml={2}
                         >
                             v 1.0
                         </Spacer>
@@ -84,7 +86,7 @@ const Navbar = () => {
                                 >
                                     <Button
                                         onClick={logout}
-                                        variant="solid"
+                                        variant="unstyled"
                                         aria-label="login"
                                         my={5}
                                         w="100%"
@@ -100,12 +102,13 @@ const Navbar = () => {
                                 >
                                     <Link to="/auth">
                                         <Button
-                                            variant="solid"
+                                            variant="unstyled"
                                             aria-label="login"
                                             my={5}
+                                            mr={5}
                                             w="100%"
                                         >
-                                            Sign in
+                                            Launch app
                                         </Button>
                                     </Link>
                                 </motion.div>
@@ -118,6 +121,7 @@ const Navbar = () => {
                             my={5}
                             aria-label="Open Menu"
                             size="md"
+                            variant={'unstyled'}
                             icon={<HamburgerIcon></HamburgerIcon>}
                             onClick={() => changeDisplay('flex')}
                             display={['flex', 'flex', 'none', 'none']}
@@ -125,9 +129,9 @@ const Navbar = () => {
 
                         <IconButton
                             ml={3}
+                            variant={'unstyled'}
                             aria-label="Toggle Mode"
                             onClick={toggleColorMode}
-                            variant={'ghost'}
                         >
                             {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
                         </IconButton>
@@ -138,9 +142,7 @@ const Navbar = () => {
                         display={display}
                         bgColor={isDark ? 'gray.800' : 'white'}
                         zIndex={20}
-                        borderWidth={1}
                         boxShadow="md"
-                        borderRadius={20}
                         pos="fixed"
                         top="0"
                         left="0"
@@ -153,6 +155,7 @@ const Navbar = () => {
                                 mr={2}
                                 aria-label="Open Menu"
                                 size="md"
+                                variant={'unstyled'}
                                 icon={<CloseIcon />}
                                 onClick={() => changeDisplay('none')}
                             />
@@ -166,9 +169,8 @@ const Navbar = () => {
                             >
                                 <Link to="/">
                                     <Button
-                                        variant="solid"
+                                        variant="unstyled"
                                         aria-label="login"
-                                        my={5}
                                         w="100%"
                                     >
                                         Home
@@ -183,7 +185,7 @@ const Navbar = () => {
                                 >
                                     <Button
                                         onClick={logout}
-                                        variant="solid"
+                                        variant="unstyled"
                                         aria-label="login"
                                         my={5}
                                         w="100%"
@@ -199,12 +201,12 @@ const Navbar = () => {
                                 >
                                     <Link to="/auth">
                                         <Button
-                                            variant="solid"
+                                            variant="unstyled"
                                             aria-label="login"
                                             my={5}
                                             w="100%"
                                         >
-                                            Sign in
+                                            Launch app
                                         </Button>
                                     </Link>
                                 </motion.div>

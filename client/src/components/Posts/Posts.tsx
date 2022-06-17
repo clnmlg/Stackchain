@@ -14,24 +14,36 @@ const Posts = ({ setCurrentId }: any) => {
     return !posts.length ? (
         <CircularProgress />
     ) : (
-        <SimpleGrid
-            columns={[3, null, 3]}
-            spacing={10}
-            display="flex"
-            flexWrap={'wrap'}
-            alignItems="stretch"
-            justifyContent={'center'}
-            py="16"
-            px={isLargerThanMD ? '16' : '6'}
-            flexDirection={isLargerThanMD ? 'row' : 'column'}
-        >
-            {posts.map((post: { _id: React.Key | null | undefined }) => (
-                <Box key={post._id}>
-                    <Post post={post} setCurrentId={setCurrentId} />
-                </Box>
-            ))}
-        </SimpleGrid>
+        <Box maxWidth="1000px" mx="auto" my="auto" p={5}>
+            <SimpleGrid columns={[1, 2, 3]} spacing="15px">
+                {posts.map((post: { _id: React.Key | null | undefined }) => (
+                    <Post
+                        key={post._id}
+                        post={post}
+                        setCurrentId={setCurrentId}
+                    />
+                ))}
+            </SimpleGrid>
+        </Box>
     )
 }
 
 export default Posts
+
+// <SimpleGrid
+// columns={[3, null, 3]}
+// spacing={10}
+// display="flex"
+// flexWrap={'wrap'}
+// alignItems="stretch"
+// justifyContent={'center'}
+// py="16"
+// px={isLargerThanMD ? '16' : '6'}
+// flexDirection={isLargerThanMD ? 'row' : 'column'}
+// >
+// {posts.map((post: { _id: React.Key | null | undefined }) => (
+//     <Box key={post._id}>
+//         <Post post={post} setCurrentId={setCurrentId} />
+//     </Box>
+// ))}
+// </SimpleGrid>

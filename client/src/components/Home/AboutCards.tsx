@@ -1,7 +1,9 @@
-import { Flex, Icon, Box, chakra, Stack } from '@chakra-ui/react'
+import { Flex, Icon, Box, chakra, Stack, useColorMode } from '@chakra-ui/react'
 import React from 'react'
 
 const AboutCard = () => {
+    const { colorMode } = useColorMode()
+    const isDark = colorMode === 'dark'
     const Feature = (props: any) => {
         return (
             <Flex>
@@ -11,10 +13,11 @@ const AboutCard = () => {
                         justifyContent="center"
                         h={12}
                         w={12}
-                        rounded="md"
-                        shadow="dark-lg"
-                        border="1px"
-                        borderColor={' #FF0080'}
+                        rounded="3xl"
+                        _light={{
+                            bg: 'brand.500',
+                        }}
+                        color="white"
                     >
                         <Icon
                             boxSize={6}
@@ -28,10 +31,23 @@ const AboutCard = () => {
                     </Flex>
                 </Flex>
                 <Box ml={4}>
-                    <chakra.dt fontSize="lg" fontWeight="medium" lineHeight="6">
+                    <chakra.dt
+                        fontSize="lg"
+                        fontWeight="medium"
+                        lineHeight="6"
+                        _light={{
+                            color: 'gray.900',
+                        }}
+                    >
                         {props.title}
                     </chakra.dt>
-                    <chakra.dd mt={2} color="gray.500">
+                    <chakra.dd
+                        mt={2}
+                        color="gray.500"
+                        _dark={{
+                            color: 'gray.400',
+                        }}
+                    >
                         {props.children}
                     </chakra.dd>
                 </Box>
@@ -41,21 +57,22 @@ const AboutCard = () => {
 
     return (
         <Flex
-            border={'1px'}
-            shadow="dark-lg"
-            borderColor={' #FF0080'}
-            borderRadius={'md'}
-            m={5}
+            p={6}
             w="auto"
             justifyContent="center"
             alignItems="center"
+            className="gradientShadow"
         >
             <Box
+                border={'1px'}
+                borderColor={isDark ? 'gray.700' : 'gray.300'}
+                shadow={'lg'}
                 py={12}
+                bg="white"
                 _dark={{
                     bg: 'gray.800',
                 }}
-                rounded="xl"
+                rounded="3xl"
             >
                 <Box
                     maxW="7xl"
@@ -78,7 +95,7 @@ const AboutCard = () => {
                             textTransform="uppercase"
                             letterSpacing="wide"
                         >
-                            Stackchain
+                            Transactions
                         </chakra.h2>
                         <chakra.p
                             mt={2}
@@ -93,7 +110,7 @@ const AboutCard = () => {
                                 color: 'gray.900',
                             }}
                         >
-                            A better way to share knowledge
+                            A better way to send money
                         </chakra.p>
                         <chakra.p
                             mt={4}
@@ -103,9 +120,13 @@ const AboutCard = () => {
                                 lg: 'auto',
                             }}
                             color="gray.500"
+                            _dark={{
+                                color: 'gray.400',
+                            }}
                         >
-                            Stackchain is a free open source crypto
-                            communication platform for investors
+                            Lorem ipsum dolor sit amet consect adipisicing elit.
+                            Possimus magnam voluptatum cupiditate veritatis in
+                            accusamus quisquam.
                         </chakra.p>
                     </Box>
 
@@ -129,7 +150,7 @@ const AboutCard = () => {
                             }}
                         >
                             <Feature
-                                title="Consolidate technologies and improve governance"
+                                title="Competitive exchange rates"
                                 icon={
                                     <path
                                         strokeLinecap="round"
@@ -139,14 +160,14 @@ const AboutCard = () => {
                                     />
                                 }
                             >
-                                Everyone including developers & crypto investors
-                                share their public stacks, favorite tools,
-                                advices, and opinions on thousands of blockchain
-                                technologies and crypto assets.
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Maiores impedit perferendis
+                                suscipit eaque, iste dolor cupiditate blanditiis
+                                ratione.
                             </Feature>
 
                             <Feature
-                                title="Open DAO"
+                                title=" No hidden fees"
                                 icon={
                                     <path
                                         strokeLinecap="round"
@@ -156,12 +177,14 @@ const AboutCard = () => {
                                     />
                                 }
                             >
-                                Empower everyone to make data-driven investment
-                                decisions.
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Maiores impedit perferendis
+                                suscipit eaque, iste dolor cupiditate blanditiis
+                                ratione.
                             </Feature>
 
                             <Feature
-                                title="Realtime tracking"
+                                title="Transfers are instant"
                                 icon={
                                     <path
                                         strokeLinecap="round"
@@ -171,8 +194,10 @@ const AboutCard = () => {
                                     />
                                 }
                             >
-                                Ask for advice, contribute your expertise, and
-                                stay current with the latest blockchain trends.
+                                Lorem ipsum, dolor sit amet consectetur
+                                adipisicing elit. Maiores impedit perferendis
+                                suscipit eaque, iste dolor cupiditate blanditiis
+                                ratione.
                             </Feature>
 
                             <Feature

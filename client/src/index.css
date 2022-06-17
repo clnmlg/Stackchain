@@ -1,0 +1,15 @@
+.gradientShadow::before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: inherit;
+    transform: translateY(20px) scale(0.95);
+    filter: blur(20px);
+    opacity: 0.7;
+    transition: opacity 0.3s;
+    background-color: linear(to-l, #7928ca, #ff0080);
+}

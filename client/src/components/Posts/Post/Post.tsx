@@ -2,14 +2,37 @@ import React, { useState } from 'react'
 import moment from 'moment'
 import { useDispatch } from 'react-redux'
 import { deletePost, likePost } from '../../../redux/actions/posts'
-import { Flex, Box, Icon, chakra, Image } from '@chakra-ui/react'
-import { GoPencil, GoThumbsup, GoTrashcan } from 'react-icons/go'
+import { IoIosDocument, IoIosHeartEmpty } from 'react-icons/io'
+import {
+    Box,
+    Icon,
+    chakra,
+    Badge,
+    Img,
+    Collapse,
+    Button,
+    useDisclosure,
+    Divider,
+} from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
 const Post = ({ post, setCurrentId }: any) => {
     const dispatch = useDispatch()
     const user = JSON.parse(localStorage.getItem('profile') as string)
     const userId = user?.result?._id
     const hasLikedPost = post.likes.find((like: any) => like === userId)
     const [likes, setLikes] = useState(post?.likes)
+    const [show, setShow] = React.useState(false)
+    const { isOpen, onToggle } = useDisclosure({ defaultIsOpen: false })
+    const handleToggle = () => setShow(!show)
+    const postLength = post.message
+    const lengthCheck =
+        postLength.length > 40 ? (
+            <Button onClick={onToggle} size={'sm'} mt="2" variant={'outline'}>
+                {isOpen ? 'Hide' : 'Show'} more
+            </Button>
+        ) : (
+            ''
+        )
     const handleLike = async () => {
         dispatch<any>(likePost(post._id))
 
@@ -23,7 +46,7 @@ const Post = ({ post, setCurrentId }: any) => {
         if (likes.length > 0) {
             return likes.find((like: any) => like === userId) ? (
                 <>
-                    <GoThumbsup />
+                    <IoIosHeartEmpty />
                     &nbsp;
                     {likes.length > 2
                         ? `You and ${likes.length - 1} others`
@@ -31,7 +54,7 @@ const Post = ({ post, setCurrentId }: any) => {
                 </>
             ) : (
                 <>
-                    <GoThumbsup />
+                    <IoIosHeartEmpty />
                     &nbsp;{likes.length} {likes.length === 1 ? 'Like' : 'Likes'}
                 </>
             )
@@ -39,141 +62,110 @@ const Post = ({ post, setCurrentId }: any) => {
 
         return (
             <>
-                <GoThumbsup />
+                <IoIosHeartEmpty />
                 &nbsp;Like
             </>
         )
     }
 
     return (
-        <>
-            <Flex w="full">
-                <Box
-                    justifyContent="space-between"
-                    flex-direction={'column'}
-                    rounded="lg"
-                    shadow="dark-lg"
-                    border="1px"
-                    borderColor={' #FF0080'}
-                    position={'relative'}
-                    m={'5'}
-                    w="sm"
-                    mx="auto"
-                    overflow="hidden"
-                >
-                    <Flex justifyContent="flex-end" alignItems="center">
-                        <chakra.span
-                            p={6}
-                            rounded="full"
+        <Box position="relative">
+            <Box
+                as="span"
+                fontSize="sm"
+                position="absolute"
+                right="5px"
+                margin="5px"
+                zIndex="1"
+            >
+                {user?.result?._id === post?.creator && (
+                    <Badge
+                        colorScheme="red"
+                        mt={2}
+                        rounded="md"
+                        p="2px 8px"
+                        as="button"
+                        onClick={() => dispatch<any>(deletePost(post._id))}
+                    >
+                        Delete
+                    </Badge>
+                )}
+            </Box>
+            <Box
+                // maxW="sm"
+                borderWidth="1px"
+                borderColor={''}
+                shadow="md"
+                minHeight={'96'}
+                rounded="3xl"
+                overflow="hidden"
+                position="relative"
+            >
+                <Img src={post.selectedFile} alt="Blog image" />
+                <Box p="5">
+                    <Box display={'flex'} alignItems="baseline">
+                        <Box
+                            fontWeight="semibold"
+                            as="h2"
+                            letterSpacing="wide"
                             textTransform="uppercase"
-                            fontSize="xs"
-                            textColor={'#555D6D'}
-                        >
-                            {moment(post.createdAt).fromNow()}
-                        </chakra.span>
-                    </Flex>
-                    <Flex alignItems="center" m={3}>
-                        <Image
-                            borderRadius={'xl'}
-                            w={'full'}
-                            h={56}
-                            fit="cover"
-                            objectPosition="center"
-                            src={post.selectedFile}
-                            alt="avatar"
-                        />
-                    </Flex>
-
-                    <Flex alignItems="center" px={6} py={3} bg="gray.900">
-                        <Icon h={6} w={6} color="white" />
-
-                        <chakra.h1
-                            mx={3}
-                            color="white"
-                            fontWeight="bold"
-                            fontSize="lg"
+                            ml="2"
                         >
                             {post.title}
-                        </chakra.h1>
-                    </Flex>
+                        </Box>
+                    </Box>
+                    <chakra.p ml="2">
+                        {moment(post.createdAt).fromNow()}
+                    </chakra.p>
+                    <Box>
+                        <Box as="span" color="gray.600" fontSize="sm">
+                            <Badge rounded="full" px="2" variant="teal">
+                                {post.name}
+                            </Badge>
+                        </Box>
+                    </Box>
 
-                    <Box py={4} px={6}>
-                        <chakra.h1
-                            fontSize="xl"
-                            fontWeight="bold"
-                            color="gray.800"
-                            _dark={{
-                                color: 'white',
-                            }}
-                        >
-                            {post.name}
-                        </chakra.h1>
-
-                        <chakra.p
-                            py={2}
-                            color="gray.700"
-                            _dark={{
-                                color: 'gray.400',
-                            }}
+                    <Collapse startingHeight={20} in={isOpen}>
+                        <Box
+                            mt="1"
+                            fontWeight="semibold"
+                            as="p"
+                            ml="2"
+                            lineHeight="tight"
+                            color="gray.600"
+                            fontSize="sm"
                         >
                             {post.message}
-                        </chakra.p>
-                    </Box>
-                    <Box p={6}>
-                        <chakra.span
-                            fontSize="xs"
-                            textTransform="uppercase"
-                            color="brand.600"
-                            _dark={{
-                                color: 'brand.400',
-                            }}
-                        >
-                            {post.tags.map((tag: any) => `#${tag} `)}
-                        </chakra.span>
-                    </Box>
-                    <Flex
-                        alignItems="center"
-                        justifyContent="space-between"
-                        px={4}
-                        py={2}
-                        bg="gray.900"
-                        roundedBottom="lg"
-                    >
-                        <chakra.button
+                        </Box>
+                    </Collapse>
+                    {lengthCheck}
+                    <Divider mt={5} mb={5} />
+                    <Box display={'flex'} alignItems="baseline">
+                        <Button
                             px={2}
                             py={1}
-                            bg="'transparent"
+                            ml="2"
                             disabled={!user?.result}
                             onClick={handleLike}
+                            variant="outline"
                         >
                             <Likes />
-                        </chakra.button>
+                        </Button>
                         {user?.result?._id === post?.creator && (
-                            <>
-                                <chakra.button
-                                    px={2}
-                                    py={1}
-                                    bg="'transparent"
-                                    onClick={() =>
-                                        dispatch<any>(deletePost(post._id))
-                                    }
-                                >
-                                    <GoTrashcan />
-                                </chakra.button>
-                                <chakra.button
-                                    px={2}
-                                    py={1}
-                                    bg="'transparent"
-                                    onClick={() => setCurrentId(post._id)}
-                                >
-                                    <GoPencil />
-                                </chakra.button>
-                            </>
+                            <Button
+                                ml={2}
+                                px={2}
+                                py={1}
+                                variant="outline"
+                                onClick={() => setCurrentId(post._id)}
+                            >
+                                <IoIosDocument />
+                            </Button>
                         )}
-                    </Flex>
+                    </Box>
                 </Box>
-            </Flex>
-        </>
+            </Box>
+        </Box>
     )
 }
 
