@@ -23,5 +23,4 @@ Stackchain is a free open source crypto communication platform for investors
 
 ### Disclaimer
 
-Stackchain is currently in development and I do not yet offer a link to the webapp.
-I will post a link here when I'll have an alpha release ready. 🧪
+Stackchain was a school project that I've since abandoned for new application development, so it's not available. 
